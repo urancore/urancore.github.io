@@ -80,7 +80,7 @@ main {
 	  padding: 8px; /* Увеличиваем область клика */
 	}
 
-	.popup img {
+	.ad-popup img {
 	  max-width: 70vw; /* Адаптивная ширина рекламы */
 	}
       }
