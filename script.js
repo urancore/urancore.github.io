@@ -21,17 +21,19 @@ function closeAd() {
 		adClosed = true;
 	}, 500);
 }
-
 document.addEventListener('DOMContentLoaded', function () {
 	const avatar = document.getElementById('avatar');
 	const images = {
 		a: new Image(),
-		b: new Image()
+		b: new Image(),
+		c: new Image()
 	};
 	images.a.src = 'assets/a.jpg';
 	images.b.src = 'assets/b.avif';
+	images.c.src = 'assets/c.png';
 
-	let currentImage = 'a';
+	const imageOrder = ['a', 'b', 'c'];
+	let currentIndex = 0;
 	let isAnimating = false;
 
 	avatar.addEventListener('mouseover', function () {
@@ -42,8 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		const handleAnimationEnd = () => {
 			avatar.removeEventListener('transitionend', handleAnimationEnd);
-			currentImage = currentImage === 'a' ? 'b' : 'a';
-			avatar.src = images[currentImage].src;
+			currentIndex = (currentIndex + 1) % imageOrder.length;
+			avatar.src = images[imageOrder[currentIndex]].src;
 			avatar.style.transform = 'rotate(0deg)';
 			isAnimating = false;
 		};
