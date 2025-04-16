@@ -42,7 +42,7 @@ main {
 	padding: 10px;
 }
 
-.ad-popup img {
+.popup img {
 	max-width: 500px;
 	height: auto;
 }
@@ -80,7 +80,7 @@ main {
 	  padding: 8px; /* Увеличиваем область клика */
 	}
 
-	.ad-popup img {
-	  max-width: 90vw; /* Адаптивная ширина рекламы */
+	.popup img {
+	  max-width: 70vw; /* Адаптивная ширина рекламы */
 	}
       }
