@@ -53,3 +53,32 @@ document.addEventListener('DOMContentLoaded', function () {
 		avatar.addEventListener('transitionend', handleAnimationEnd);
 	});
 });
+
+function createTiles() {
+	const container = document.getElementById('tiles-container');
+	const size = 20;
+	const columns = Math.floor(window.innerWidth / size);
+	const rows = Math.floor(window.innerHeight / size);
+
+	container.style.setProperty('--columns', columns);
+	container.style.setProperty('--rows', rows);
+
+	// Очищаем предыдущие плитки
+	container.innerHTML = '';
+
+	for (let i = 0; i < columns * rows; i++) {
+		const tile = document.createElement('div');
+		tile.className = 'tile';
+		tile.addEventListener('mousemove', () => {
+			tile.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+		});
+		tile.addEventListener('mouseleave', () => {
+			tile.style.background = '#000000'; // исправлен цвет
+		});
+		container.appendChild(tile);
+	}
+}
+
+// Добавляем обработчик ресайза
+window.addEventListener('resize', createTiles);
+window.onload = createTiles;
