@@ -2,66 +2,245 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>URANCORE - Portfolio</title>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-		.ad-popup {
-			display: none;
-			position: fixed;
-			bottom: -300px;
-			left: 50%;
-			transform: translateX(-50%);
-			transition: all 0.5s ease-in-out;
-			border: 2px solid #ccc;
-			z-index: 9999;
-			background: white;
-			padding: 15px;
-			border-radius: 10px;
-			box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-			max-width: 90%;
+		body {
+			margin: 0;
+			padding: 3rem 1rem 4rem;
+			min-height: 100vh;
+			background: #121212;
+			color: #e0e0e0;
+			font-family: 'Inter', sans-serif;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 
-		.ad-popup.show {
-			bottom: 20px;
+		.contacts {
+			margin-bottom: 2rem;
+			display: flex;
+			gap: 1.5rem;
+			font-weight: 700;
+			font-size: 1.1rem;
 		}
 
-		.close {
-			position: absolute;
-			right: 10px;
-			top: 5px;
+		.contacts a {
+			color: #4ee44e;
+			text-decoration: none;
+			border-bottom: 2px solid transparent;
+			transition: border-color 0.25s ease;
+			padding-bottom: 2px;
+			user-select: none;
+		}
+
+		.contacts a:hover,
+		.contacts a:focus {
+			border-color: #4ee44e;
+			outline: none;
+		}
+
+		main {
+			width: 100%;
+			max-width: 960px;
+			text-align: center;
+		}
+
+		h1 {
+			font-weight: 700;
+			font-size: 3rem;
+			margin-bottom: 0.5rem;
+			animation: fadeInUp 0.6s forwards;
+		}
+
+		p.subtitle {
+			font-weight: 400;
+			font-size: 1.25rem;
+			margin-bottom: 2rem;
+			color: #aaaaaa;
+			max-width: 480px;
+			margin-left: auto;
+			margin-right: auto;
+			animation: fadeInUp 0.6s forwards;
+			animation-delay: 0.2s;
+		}
+
+		.projects-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 1.5rem;
+			opacity: 0;
+			animation: fadeInUp 0.6s forwards;
+			animation-delay: 0.4s;
+			padding-bottom: 2rem;
+		}
+
+		.project-card {
+			background: #1f1f1f;
+			border-radius: 12px;
+			padding: 1.5rem;
+			box-shadow: 0 2px 8px rgb(0 0 0 / 0.6);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			transition: background-color 0.3s ease, transform 0.2s ease;
 			cursor: pointer;
-			font-size: 24px;
-			color: #000;
-			padding: 5px;
-			line-height: 1;
+			user-select: none;
+			outline-offset: 3px;
+			color: #e0e0e0;
+			text-decoration: none;
+		}
+
+		.project-card:hover,
+		.project-card:focus-visible {
+			background: #2a2a2a;
+			transform: translateY(-5px);
+			box-shadow:
+				0 0 10px #4ee44e80,
+				0 0 25px #4ee44e50;
+			outline: none;
+		}
+
+		.project-card:focus-visible {
+			outline: 3px solid #4ee44e;
+		}
+
+		.project-title {
+			font-weight: 700;
+			font-size: 1.3rem;
+			margin-bottom: 0.8rem;
+			color: #4ee44e;
+			user-select: text;
+		}
+
+		.project-description {
+			font-weight: 400;
+			font-size: 1rem;
+			color: #c4c4c4;
+			user-select: text;
+		}
+
+		footer {
+			margin-top: 4rem;
+			font-size: 0.8rem;
+			color: #555555;
+			user-select: none;
+			text-align: center;
+			padding-bottom: 1rem;
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(12px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 480px) {
+			body {
+				padding: 3rem 1rem 4rem;
+			}
+
+			h1 {
+				font-size: 2.2rem;
+			}
+
+			p.subtitle {
+				font-size: 1rem;
+				max-width: 90vw;
+			}
+
+			.projects-container {
+				grid-template-columns: 1fr;
+				gap: 1rem;
+			}
+
+			.project-title {
+				font-size: 1.1rem;
+			}
+
+			.contacts {
+				flex-direction: column;
+				gap: 0.8rem;
+			}
 		}
 	</style>
-	<title>~Urancore~</title>
 </head>
 
 <body>
-	<div id="tiles-container"></div>
-	<main>
-		<div class="image">
-			<img src="assets/a.jpg" id="avatar">
-		</div>
-		<div class="links">
-			<a href="https://t.me/urancore">Telegram</a>
-			<a href="https://github.com/urancore">GitHub</a>
-		</div>
 
-		<div class="ad-popup" id="adPopup">
-			<span class="close" onclick="closeAd()">×</span>
-			<a
-				href="https://shop.sibur.ru/catalog/kauchuki/kauchuk_sinteticheskiy_maslonapolnennyy_butadien_stirolnyy_sks_30_arkm_27_sbr_1723_tdae_marka_b_v_pl/">
-				<img src="assets/ad.jpg" alt="sponsor">
-			</a>
+	<nav class="contacts" aria-label="Контактные ссылки">
+		<a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
+			aria-label="GitHub Profile">GitHub</a>
+		<a href="https://t.me/yourtelegram" target="_blank" rel="noopener noreferrer"
+			aria-label="Telegram Profile">Telegram</a>
+	</nav>
+
+	<main>
+		<h1>URANCORE</h1>
+		<p class="subtitle">Fan of Computer Science, C, Golang & Electronics<br>Here are some of my projects
+		</p>
+
+		<div class="projects-container" role="list" id="projects-container">
+			<!-- Проекты будут добавлены сюда скриптом -->
 		</div>
 	</main>
-	<script src="script.js"></script>
+
+	<footer>© 2025 URANCORE</footer>
+
+	<script>
+		const projects = [
+			{
+				title: 'logger',
+				description: 'Simple logger for C',
+				url: 'https://github.com/urancore/logger'
+			},
+			{
+				title: 'TISemu',
+				description: 'TIS-100 asm emulator',
+				url: 'https://github.com/urancore/tisemu'
+			},
+			{
+				title: 'VFS',
+				description: 'VFS lib for C.',
+				url: 'https://github.com/urancore/VFS'
+			}
+		];
+
+		const container = document.getElementById('projects-container');
+
+		projects.forEach(project => {
+			const a = document.createElement('a');
+			a.href = project.url;
+			a.target = '_blank';
+			a.rel = 'noopener noreferrer';
+			a.className = 'project-card';
+			a.setAttribute('role', 'link');
+			a.setAttribute('tabindex', '0');
+			a.setAttribute('aria-label', `Open ${project.title} project on GitHub`);
+
+			const title = document.createElement('div');
+			title.className = 'project-title';
+			title.textContent = project.title;
+
+			const desc = document.createElement('div');
+			desc.className = 'project-description';
+			desc.textContent = project.description;
+
+			a.appendChild(title);
+			a.appendChild(desc);
+			container.appendChild(a);
+		});
+	</script>
+
 </body>
 
 </html>
