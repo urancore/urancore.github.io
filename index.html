@@ -5,184 +5,25 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>github.io</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<link rel="stylesheet" href="style.css">
+
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-		body {
-			margin: 0;
-			padding: 3rem 1rem 4rem;
-			min-height: 100vh;
-			background: #121212;
-			color: #e0e0e0;
-			font-family: 'Inter', sans-serif;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-
-		.contacts {
-			margin-bottom: 2rem;
-			display: flex;
-			gap: 1.5rem;
-			font-weight: 700;
-			font-size: 1.1rem;
-		}
-
-		.contacts a {
-			color: #4ee44e;
-			text-decoration: none;
-			border-bottom: 2px solid transparent;
-			transition: border-color 0.25s ease;
-			padding-bottom: 2px;
-			user-select: none;
-		}
-
-		.contacts a:hover,
-		.contacts a:focus {
-			border-color: #4ee44e;
-			outline: none;
-		}
-
-		main {
-			width: 100%;
-			max-width: 960px;
-			text-align: center;
-		}
-
-		h1 {
-			font-weight: 700;
-			font-size: 3rem;
-			margin-bottom: 0.5rem;
-			animation: fadeInUp 0.6s forwards;
-		}
-
-		p.subtitle {
-			font-weight: 400;
-			font-size: 1.25rem;
-			margin-bottom: 2rem;
-			color: #aaaaaa;
-			max-width: 480px;
-			margin-left: auto;
-			margin-right: auto;
-			animation: fadeInUp 0.6s forwards;
-			animation-delay: 0.2s;
-		}
-
-		.projects-container {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 1.5rem;
-			opacity: 0;
-			animation: fadeInUp 0.6s forwards;
-			animation-delay: 0.4s;
-			padding-bottom: 2rem;
-		}
-
-		.project-card {
-			background: #1f1f1f;
-			border-radius: 12px;
-			padding: 1.5rem;
-			box-shadow: 0 2px 8px rgb(0 0 0 / 0.6);
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			transition: background-color 0.3s ease, transform 0.2s ease;
-			cursor: pointer;
-			user-select: none;
-			outline-offset: 3px;
-			color: #e0e0e0;
-			text-decoration: none;
-		}
-
-		.project-card:hover,
-		.project-card:focus-visible {
-			background: #2a2a2a;
-			transform: translateY(-5px);
-			box-shadow:
-				0 0 10px #4ee44e80,
-				0 0 25px #4ee44e50;
-			outline: none;
-		}
-
-		.project-card:focus-visible {
-			outline: 3px solid #4ee44e;
-		}
-
-		.project-title {
-			font-weight: 700;
-			font-size: 1.3rem;
-			margin-bottom: 0.8rem;
-			color: #4ee44e;
-			user-select: text;
-		}
-
-		.project-description {
-			font-weight: 400;
-			font-size: 1rem;
-			color: #c4c4c4;
-			user-select: text;
-		}
-
-		footer {
-			margin-top: 4rem;
-			font-size: 0.8rem;
-			color: #555555;
-			user-select: none;
-			text-align: center;
-			padding-bottom: 1rem;
-		}
-
-		@keyframes fadeInUp {
-			from {
-				opacity: 0;
-				transform: translateY(12px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		@media (max-width: 480px) {
-			body {
-				padding: 3rem 1rem 4rem;
-			}
-
-			h1 {
-				font-size: 2.2rem;
-			}
-
-			p.subtitle {
-				font-size: 1rem;
-				max-width: 90vw;
-			}
-
-			.projects-container {
-				grid-template-columns: 1fr;
-				gap: 1rem;
-			}
-
-			.project-title {
-				font-size: 1.1rem;
-			}
-
-			.contacts {
-				flex-direction: column;
-				gap: 0.8rem;
-			}
-		}
 	</style>
 </head>
 
 <body>
 
-	<nav class="contacts">
-		<a href="https://github.com/urancore" target="_blank" rel="noopener noreferrer"
-			aria-label="GitHub Profile">GitHub</a>
-		<a href="https://t.me/urancore" target="_blank" rel="noopener noreferrer"
-			aria-label="Telegram Profile">Telegram</a>
-	</nav>
+	<div class="social-icons">
+		<a href="https://github.com/urancore" class="github" target="_blank" rel="noopener noreferrer"
+			aria-label="GitHub">
+			<i class="fab fa-github"></i>
+		</a>
+		<a href="https://t.me/urancore" class="telegram" target="_blank" rel="noopener noreferrer"
+			aria-label="Telegram">
+			<i class="fab fa-telegram"></i>
+		</a>
+	</div>
 
 	<main>
 		<h1>URANCORE</h1>
@@ -212,7 +53,7 @@
 				description: 'VFS lib for C',
 				url: 'https://github.com/urancore/VFS'
 			},
-						{
+			{
 				title: 'C RAY',
 				description: 'Ray casting with OpenGL',
 				url: 'https://github.com/urancore/C_RAY'
