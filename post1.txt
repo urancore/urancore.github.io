@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+	<main>
+		<div class="content br-space">
+			<h1>Многопоточность</h1>
+			<ul>
+				<li><span class="bold">Поток</span> — последовательность инструкций, выполняемых параллельно с другими потоками. При запуске программы создаётся как минимум один поток — главный. Если программа использует только его, она считается однопоточной.</li>
+
+				<li><span class="bold">Процесс</span> — экземпляр выполняемой программы. Потоки существуют внутри одного процесса и могут взаимодействовать между собой, в отличие от процессов, которые изолированы друг от друга.</li>
+			</ul>
+
+			<h2>Реализация в C (pthread.h)</h2>
+
+			В C потоки реализуются с помощью библиотеки <code>pthread.h</code>. Поток представлен типом <span class="highlight">pthread_t</span>.
+
+			Создание потока осуществляется с помощью функции <span class="highlight">pthread_create</span>:
+
+			<div class="code-block">
+				<pre><code>int pthread_create(
+	pthread_t *thread,
+	const pthread_attr_t *attr,
+	void *(*routine)(void *),
+	void *arg
+);</code></pre>
+			</div>
+
+			Параметры:
+			<ul>
+				<li><code>thread</code> — указатель на переменную, в которую будет записан идентификатор потока.</li>
+				<li><code>attr</code> — указатель на структуру с атрибутами потока (можно передать <code>NULL</code> для значений по умолчанию).</li>
+				<li><code>routine</code> — функция, выполняемая в потоке. Принимает один аргумент типа <code>void *</code> и возвращает <code>void *</code>. Для передачи нескольких аргументов можно использовать структуру.</li>
+				<li><code>arg</code> — аргумент, передаваемый в функцию потока.</li>
+			</ul>
+
+			По умолчанию основной поток не ожидает завершения остальных. Чтобы дождаться окончания работы конкретного потока, используется функция <span class="highlight">pthread_join</span>:
+
+			<div class="code-block">
+				<pre><code>int pthread_join(
+	pthread_t thread,
+	void **retval
+);</code></pre>
+			</div>
+
+			Параметры:
+			<ul>
+				<li><code>thread</code> — идентификатор потока, завершения которого ожидается.</li>
+				<li><code>retval</code> — указатель на переменную, в которую будет записан результат, возвращённый из потока (можно передать <code>NULL</code>, если результат не нужен).</li>
+			</ul>
+
+			<h2>Пример</h2>
+			<div class="code-block">
+				<pre><code>#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+void *some_work(void *arg)
+{
+	for (int i = 0; i &lt; 5; ++i) {
+		puts(arg);
+	}
+	return NULL;
+}
+
+void *func2(void *arg)
+{
+	int m = 1;
+	for (int i = 1; i &lt; 3; i++) {
+		m *= (int)arg * i;
+		printf("%d\n", m);
+	}
+	void *res = (void *)m;
+	return res;
+}
+
+int main(void)
+{
+	pthread_t thread1, thread2;
+	void *t2_result;
+
+	pthread_create(&thread1, NULL, some_work, "Hello World");
+	pthread_create(&thread2, NULL, func2, (void *)12);
+
+	pthread_join(thread1, NULL);
+	pthread_join(thread2, &t2_result);
+
+	printf("result: %d\n", (int)t2_result);
+	printf("End...\n");
+	return 0;
+}
+</code></pre>
+			</div>
+
+			Вывод программы:
+			<div class="code-block">
+				<pre><code>Hello World
+Hello World
+Hello World
+Hello World
+Hello World
+12
+288
+result: 288
+End...</code></pre>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>
