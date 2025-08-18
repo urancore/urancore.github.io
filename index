@@ -3,8 +3,6 @@ $ URANCORE
 - 2025.08.18
 [Многопоточность в C](posts/post-1.html)
 
-
-___
-
-Этот сайт сгенерирован с помощью C
-[Исходники на GitHub](https://github.com/urancore/urancore.github.io/blob/main/parser.c)
+---
+This website is generated using C
+[Sources on GitHub](https://github.com/urancore/urancore.github.io/blob/main/parser.c)

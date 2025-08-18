@@ -55,3 +55,7 @@ Also generates a <ul><li>...</li></ul> block but without list tracking.
 
 ![Alt text](image_url)
 Converts to: <img src="image_url" alt="Alt text">
+
+
+---
+Convert to: <div class="LINE"></div>

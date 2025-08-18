@@ -87,7 +87,7 @@ void end_html()
 	tag_close("html");
 }
 
-void head(const char *title, const char *styles_file)
+void head(const char *title, const char *styles_file, const char *favicon_url)
 {
 	tag_open("head", NULL);
 	FILE *f = get_stream();
@@ -96,6 +96,7 @@ void head(const char *title, const char *styles_file)
 	tag("title", "%s", title);
 
 	if (styles_file) cmtag_css_link(styles_file);
+	if (favicon_url) cmtag_favicon(favicon_url);
 
 	tag_close("head");
 }
@@ -151,6 +152,13 @@ void cmtag_h1(char *text)
 	tag_inline("h1", attr[0] ? attr : NULL, text);
 }
 
+void cmtag_favicon(const char *url)
+{
+	FILE *f = get_stream();
+	fprintf(f, "<link rel=\"shortcut icon\" href=\"%s\" type=\"image/x-icon\">", url);
+}
+
+
 int genHTML(const char *filename)
 {
 	FILE *f = fopen(filename, "r");
@@ -201,6 +209,8 @@ int genHTML(const char *filename)
 				in_list = 1;
 			}
 			tag("li", "%s", buf + 2);
+		} else if (strncmp(buf, "---", 3) == 0) {
+			tag_inline("div", "class=\"LINE\"", "");
 		} else if (strncmp(buf, "-- ", 3) == 0) {
 			tag("ul", "<li>%s</li>", buf + 3);
 
@@ -266,7 +276,7 @@ int main(int argc, char *argv[])
 	set_stream(out);
 
 	begin_html();
-	head("URANCORE", styles_file);
+	head("URANCORE", styles_file, "assets/favicon.png");
 	begin_body();
 
 	genHTML(input_file);

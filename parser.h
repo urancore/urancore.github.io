@@ -11,6 +11,7 @@ void tag_inline_open(const char *name, const char *attrs, const char *text);
 void cmtag_css_link(const char *filename);
 void cmtag_img(const char *url, char *alt);
 void extract_id_from_header(char *dst, const char *src);
-
+void cmtag_favicon(const char *url);
+int genHTML(const char *filename);
 
 #endif
