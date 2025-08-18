@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-	/* Colors */
+	/* colors */
 	--color-bg: #121212;
 	--color-text: #e0e0e0;
 	--color-accent: #00d9ff;
 	--color-accent-hover: #00aeff;
-	--color-heading: #90caf9;
+	--color-heading: #e0e0e0;
 	--color-muted: #d4d4d4;
 
-
+	/* font */
 	--font-main: 'JetBrains Mono', monospace;
 	--font-size-base: 16px;
 	--line-height-base: 1.6;
@@ -20,10 +20,14 @@
 	--margin-heading-bottom: 30px;
 	--margin-post-bottom: 10px;
 	--margin-time-bottom: 5px;
+	--page-max-width: 100%;
 
 	/* link underline */
 	--underline-height: 2px;
 	--underline-transition: transform 0.3s ease;
+
+	/* img */
+	--img_max_size: 500px;
 }
 
 
@@ -34,13 +38,21 @@ body {
 	font-size: var(--font-size-base);
 	line-height: var(--line-height-base);
 	padding: var(--padding-body);
+	max-width: var(--page-max-width);
 	margin: 0;
 }
 
 
-h1 {
+h1,
+h2,
+h3 {
+	font-style: 'Inter';
 	color: var(--color-heading);
 	margin-bottom: var(--margin-heading-bottom);
+}
+
+img {
+	max-height:  var(--img_max_size);
 }
 
 a {
@@ -71,4 +83,15 @@ a:hover::after {
 a:not(:hover)::after {
 	transform: scaleX(0);
 	transform-origin: right;
+}
+
+pre {
+	background-color: #1e1e1e;
+	color: #ffffff;
+	padding: 1em;
+	overflow-x: auto;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 14px;
+	line-height: 1.5;
+	margin-bottom: 20px;
 }

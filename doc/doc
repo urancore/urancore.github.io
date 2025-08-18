@@ -1,0 +1,57 @@
+./parser -i <input_file> [-o <output_file>] [-s <style_file>]
+example:
+./parser -i text1 -o text1.html -s style.css
+
+
+$ Heading Text
+Converts to <h1>Heading Text</h1>
+
+
+$$ Subheading Text
+Converts to <h2>Subheading Text</h2>
+
+
+$$$ Sub-subheading Text
+Converts to <h3>Sub-subheading Text</h3>
+
+
+__ This is a paragraph.
+Converts to <p>This is a paragraph.</p>
+
+
+Any line that doesn’t match a specific pattern is also treated as a paragraph:
+This is another paragraph.
+Converts to <p>This is another paragraph.</p>
+
+
+```
+include <stdlib.h>
+int main() {
+    return 0;
+}
+```
+
+Converts to:
+<pre><code>
+#include &lt;stdlib.h&gt;
+int main() {
+    return 0;
+}
+</code></pre>
+
+
+- List item 1
+- List item 2
+
+Convert to:
+<ul>
+  <li>List item 1</li>
+  <li>List item 2</li>
+</ul>
+
+-- Inline list item
+Also generates a <ul><li>...</li></ul> block but without list tracking.
+
+
+![Alt text](image_url)
+Converts to: <img src="image_url" alt="Alt text">
